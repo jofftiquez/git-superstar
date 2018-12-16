@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const getStars = async (username) => {
+export const getStars = async (username, token) => {
   let final = [];
   
   const request = axios.create({
     baseURL: 'https://api.github.com'
   });
-  const { data } = await request.get(`/users/${username}`);
+  const { data } = await request.get(`/users/${username}?token=${token}`);
   
   if (!data.public_repos) {
     console.log(data.message)
