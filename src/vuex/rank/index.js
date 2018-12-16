@@ -1,0 +1,27 @@
+const state = {
+  rankLocal: null,
+  rankGlobal: null
+};
+
+const getters = {
+  rankLocal: (s) => s.rankLocal,
+  rankGlobal: (s) => s.rankGlobal,
+};
+
+const actions = {
+  getRanking: async ({commit}, {username, token}) => {
+  }
+};
+
+const mutations = {
+  // setUser: (s, val) => { s.user = val; },
+  // setToken: (s, val) => { s.token = val; },
+};
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
+};
