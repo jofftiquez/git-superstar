@@ -1,4 +1,4 @@
-# git-super-star
+# git-superstar
 
 > Count your Github stars!
 
