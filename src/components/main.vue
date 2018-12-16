@@ -2,13 +2,15 @@
   div
     v-toolbar
       v-toolbar-title Git Superstar!
+      v-spacer
+      v-btn(href="https://github.com/jofftiquez/git-superstar/" target="_blank") Github
     v-progress-linear(v-if="loading" :indeterminate="true" height="4" style="margin: 0;")
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md8)
           h1(align="center").white--text Count your Github stars!
           form(@submit.prevent="submit")
-            v-layout(row)
+            v-layout(row).pl-1
               v-text-field(v-model="username" solo label="Github username..." required :disabled="loading")
               v-btn(type="submit" large style="margin-top: 1px;" :disabled="loading") Count!
       v-layout(row justify-center).mb-3
@@ -65,7 +67,7 @@
     data() {
       return {
         loading: false,
-        username: 'jofftiquez'
+        username: ''
       }
     },
     computed: {
