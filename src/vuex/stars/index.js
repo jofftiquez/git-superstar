@@ -15,8 +15,8 @@ const getters = {
 };
 
 const actions = {
-  getStars: async ({commit}, username) => {
-    const repos = await getStars(username);
+  getStars: async ({commit}, {username, token}) => {
+    const repos = await getStars(username, token);
     const totalStars = repos.map(item => item.stargazers_count).reduce((a, b) => a + b);
     const topRepos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
     const totalForked = repos.filter(item => item.fork).length;
@@ -26,8 +26,6 @@ const actions = {
     commit('setTotalOwned', totalOwned);
     commit('setStarsTotal', totalStars);
     commit('setTopRepos', topRepos);
-    // console.log(topRepos);
-    // console.log(totalStars);
   }
 };
 
