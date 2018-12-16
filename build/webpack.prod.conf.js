@@ -10,6 +10,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const PuppeteerRenderer = PrerenderSPAPlugin.PuppeteerRenderer
+const pageRoutes = require('../src/assets/routes')
+
+const pagesToRender = [];
+const titlesToRender = {};
+
+pageRoutes.forEach(function (page) {
+  pagesToRender.push(page.path);
+  titlesToRender[page.path] = {};
+  titlesToRender[page.path].title = page.title;
+  titlesToRender[page.path].description = page.description;
+  titlesToRender[page.path].image = page.image;
+});
+
 
 const env = require('../config/prod.env')
 
@@ -28,6 +43,30 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
+    new PrerenderSPAPlugin({
+      staticDir: path.resolve(__dirname, '../dist'),
+      routes: pagesToRender,
+      renderAfterDocumentEvent: 'vue-post-render',
+      postProcessHtml: function (context) {
+        return context.html.replace(
+          /GHS_TITLE/g,
+          titlesToRender[context.route].title
+        ).replace(
+          /GHS_DESCRIPTION/g,
+          titlesToRender[context.route].description
+        ).replace(
+          /GHS_IMAGE/g,
+          titlesToRender[context.route].image
+        ).replace(
+          /GHS_URL/g,
+          'https://jofftiquez.github.io/git-superstar' + context.route
+        );
+      },
+      renderer: new PuppeteerRenderer({
+        renderAfterElementExists: '#app',
+        headless: false
+      })
+    }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
