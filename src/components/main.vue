@@ -1,9 +1,9 @@
 <template lang="pug">
-  div
+  div.mb-1
     v-toolbar
       v-toolbar-title Git Superstar!
       v-spacer
-      v-btn(href="https://github.com/jofftiquez/git-superstar/" target="_blank") Github
+      v-btn(href="https://github.com/jofftiquez/git-superstar/" target="_blank" flat) Github
     v-progress-linear(v-if="loading" :indeterminate="true" height="4" style="margin: 0;")
     v-container
       v-layout(row justify-center)
