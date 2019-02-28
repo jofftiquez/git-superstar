@@ -4,4 +4,4 @@
 
 ## [Live](https://git-superstar.firebaseapp.com)
 
-![Screen Shot](https://i.imgur.com/dYcFfND.png)
+![Screen Shot](https://i.imgur.com/4RjkFfj.png)
