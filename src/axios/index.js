@@ -4,16 +4,17 @@ export const getStars = async (username, token) => {
   let final = [];
   
   const request = axios.create({
-    baseURL: 'https://api.github.com'
+    baseURL: process.env.GITHUB_API
   });
+  
   const { data } = await request.get(`/users/${username}?token=${token}`);
   
   if (!data.public_repos) {
-    console.log(data.message)
+    console.log(data.message);
     return
   }
 
-  var pages = Math.ceil(data.public_repos / 100),
+  let pages = Math.ceil(data.public_repos / 100),
     i = pages,
     repos = []
   
