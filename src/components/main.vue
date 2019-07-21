@@ -16,7 +16,7 @@
       //- LOGIN
       v-layout(row justify-center align-center v-if="!user")
         v-flex(xs12 md4)
-          v-btn(large block @click="authWithGithub") 
+          v-btn(large block @click="authWithGithub" :disabled="loading" :loading="loading") 
             img(width="20" src="../assets/images/github-logo.png")
             | &nbsp;Login with Github
 
