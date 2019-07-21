@@ -9,6 +9,7 @@ const getters = {
 };
 
 const actions = {
+  // TODO: Get ranking of user via stars
   getRanking: async ({commit}, {username, token}) => {
   }
 };
