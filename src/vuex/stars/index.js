@@ -1,4 +1,5 @@
 import { getStars } from '../../axios';
+import { ref } from '../../firebase';
 
 const state = {
   starsTotal: 0,
@@ -24,8 +25,13 @@ const actions = {
     commit('setStarsTotal', totalStars);
     commit('setTotalForked', totalForked);
     commit('setTotalOwned', totalOwned);
-    commit('setStarsTotal', totalStars);
     commit('setTopRepos', topRepos);
+    await ref.child(username)
+      .child('total-stars')
+      .set(totalStars);
+    await ref.child(username)
+      .child('total-forked')
+      .set(totalForked);
   }
 };
 
