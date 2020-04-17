@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "firebase": "^5.7.0",
     "prerender-spa-plugin": "^3.4.0",
     "vue": "^2.5.2",
